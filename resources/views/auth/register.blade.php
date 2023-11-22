@@ -9,13 +9,15 @@ Register | @parent
 
       @csrf
 
-      @include('auth.alert')
+      @if (session()->has('alert'))
+      <x-alert type="{{ session('type') }}" message="{{ session('alert') }}" />
+      @endif
 
       <div class="form-outline mb-4">
             <input name="name" type="text" value="{{ old('name') }}" required placeholder="Enter your name"
                   class="form-control form-control-md" />
             @error('name')
-            <div class="alert alert-danger">{{ $message }}</div>
+            <x-alert type="danger" message="{{ $message }}" />
             @enderror
       </div>
 
@@ -23,7 +25,7 @@ Register | @parent
             <input name="email" type="email" value="{{ old('email') }}" required placeholder="Enter your email"
                   class="form-control form-control-md" />
             @error('email')
-            <div class="alert alert-danger">{{ $message }}</div>
+            <x-alert type="danger" message="{{ $message }}" />
             @enderror
       </div>
 
@@ -31,7 +33,7 @@ Register | @parent
             <input name="password" type="password" required placeholder="Enter your password"
                   class="form-control form-control-md" />
             @error('password')
-            <div class="alert alert-danger">{{ $message }}</div>
+            <x-alert type="danger" message="{{ $message }}" />
             @enderror
       </div>
 

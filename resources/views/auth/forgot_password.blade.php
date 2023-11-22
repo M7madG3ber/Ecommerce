@@ -9,13 +9,15 @@ Forgot Password | @parent
 
       @csrf
 
-      @include('auth.alert')
+      @if (session()->has('alert'))
+      <x-alert type="{{ session('type') }}" message="{{ session('alert') }}" />
+      @endif
 
       <div class="form-outline mb-4">
             <input name="email" type="email" value="{{ old('email') }}" required placeholder="Enter your email"
                   class="form-control form-control-md" />
             @error('email')
-            <div class="alert alert-danger">{{ $message }}</div>
+            <x-alert type="danger" message="{{ $message }}" />
             @enderror
       </div>
 

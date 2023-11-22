@@ -35,6 +35,7 @@ class AuthController extends Controller
                 return to_route('home');
         }
 
+        Session::flash('type', 'danger');
         Session::flash('alert', 'Credentials is not correct!');
 
         return redirect()
@@ -61,6 +62,7 @@ class AuthController extends Controller
         $user = User::create($request->except("_token"));
 
         if ($user == null) {
+            Session::flash('type', 'danger');
             Session::flash('alert', 'Account registration failed, please try again!');
 
             return redirect()
@@ -100,6 +102,7 @@ class AuthController extends Controller
         Mail::to($request->email)
             ->send(new ForgotPasswordMail($token));
 
+        Session::flash('type', 'primary');
         Session::flash('alert', 'Check your mail inbox please.');
         return to_route('login');
     }
@@ -119,6 +122,7 @@ class AuthController extends Controller
             ->first();
 
         if ($resetRecord == null) {
+            Session::flash('type', 'danger');
             Session::flash('alert', 'Expiration token!');
             return to_route('login');
         }
@@ -131,6 +135,7 @@ class AuthController extends Controller
         PasswordReset::where("email", $request->email)
             ->delete();
 
+        Session::flash('type', 'success');
         Session::flash('alert', 'Password reset successfully.');
         return to_route('login');
     }
