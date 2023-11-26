@@ -37,6 +37,25 @@
                         </li> --}}
 
                         <li class="nav-item">
+                              <a href="{{ route('categories.index') }}" class="nav-link 
+                                    {{ request()->is('dashboard/categories*') ? ' active ' : '' }}
+                                    ">
+                                    <i class="nav-icon far fa-list-alt"></i>
+                                    <p>Categories</p>
+                              </a>
+                        </li>
+
+                        <li class="nav-item">
+                              <a href="{{ route('products.index') }}" class="nav-link 
+                                    {{-- {{ \Route::current()->getName() == 'products.index' ? ' active ' : '' }} --}}
+                                    {{ request()->is('dashboard/products*') ? ' active ' : '' }}
+                                    ">
+                                    <i class="nav-icon fab fa-product-hunt"></i>
+                                    <p>Products</p>
+                              </a>
+                        </li>
+
+                        <li class="nav-item">
                               <a href="{{ route('logout') }}" class="nav-link">
                                     <i class="nav-icon fas fa-sign-out-alt"></i>
                                     <p>Logout</p>

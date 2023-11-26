@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(
@@ -15,19 +17,17 @@ Route::group(
                   [
                         'middleware' => [
                               'dashboard'
-                        ]
+                        ],
+                        'prefix' => 'dashboard'
                   ],
                   function () {
 
-                        Route::get("/dashboard", [DashboardController::class, 'index'])->name('dashboard');
+                        Route::get("/", [DashboardController::class, 'index'])->name('dashboard');
+
+                        Route::resource('categories', CategoryController::class);
+
+                        Route::resource('products', ProductController::class);
                   }
             );
       }
 );
-
-/**
- * Fullback Route
- */
-Route::fallback(function () {
-      return to_route('logout');
-});
