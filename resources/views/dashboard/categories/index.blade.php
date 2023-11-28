@@ -28,6 +28,12 @@ Categories | @parent
                               <i class="fas fa-plus-circle"></i> </a>
                   </div>
 
+                  @if (session()->has('alert'))
+                  <div class="col-sm-12">
+                        <x-alert type="{{ session('type') }}" message="{{ session('alert') }}" />
+                  </div>
+                  @endif
+
                   <div class="col-sm-12 mt-3">
                         <table class="table table-striped table-hover">
                               <thead>
@@ -44,19 +50,19 @@ Categories | @parent
                                           <td>{{ $category->name }}</td>
                                           <td class="d-flex">
 
+                                                <a href="{{ route('categories.edit', $category->id ) }}"
+                                                      class="btn btn-primary">
+                                                      <i class="fas fa-edit"></i>
+                                                </a>
+
                                                 <form action="{{ route('categories.destroy', $category->id ) }}"
-                                                      method="POST">
+                                                      method="POST" class="mx-2">
                                                       @csrf
                                                       @method('delete')
                                                       <button class="btn btn-danger">
                                                             <i class="fas fa-trash"></i>
                                                       </button>
                                                 </form>
-
-                                                <a href="{{ route('categories.edit', $category->id ) }}"
-                                                      class="btn btn-primary mx-2">
-                                                      <i class="fas fa-edit"></i>
-                                                </a>
 
                                           </td>
                                     </tr>

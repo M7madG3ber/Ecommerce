@@ -17,15 +17,11 @@
             }
 
             .alert {
-                  margin: 5px 0;
-                  border-radius: 10px;
-                  padding: 5px 10px;
-            }
-
-            .alert button {
-                  padding: 0 !important;
+                  border-radius: 5px;
+                  padding: 10px;
             }
       </style>
+      @yield('styles')
 
       <title>
             @section('title')
@@ -48,8 +44,8 @@
             </div>
       </section>
 
-      <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
       <script src="{{ asset('assets/js/jquery.js') }}"></script>
+      <script src="{{ asset('assets/js/alert.js') }}"></script>
       @yield('scripts')
 </body>
 
